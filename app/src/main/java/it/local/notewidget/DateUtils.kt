@@ -20,7 +20,7 @@ object DateUtils {
             else -> "dd/MM"
         }
         return d.format(DateTimeFormatter.ofPattern(pattern, it))
-            .replaceFirstChar { it.titlecase(it) }
+            .replaceFirstChar { ch -> ch.titlecase(Locale.ITALIAN) }
     }
 
     fun today(): String = LocalDate.now().toString()
