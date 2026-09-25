@@ -19,15 +19,35 @@ class MainActivity : Activity() {
     private var date = LocalDate.now()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    super.onCreate(savedInstanceState)
+
+    try {
         db = NoteDatabase(this)
         noteId = intent.getLongExtra("noteId", -1L).takeIf { it > 0 }
+
         noteId?.let { db.get(it) }?.let {
             text = EditText(this).also { e -> e.setText(it.text) }
             date = LocalDate.parse(it.date)
-        } ?: run { text = EditText(this) }
+        } ?: run {
+            text = EditText(this)
+        }
+
         buildUi()
+
+    } catch (e: Throwable) {
+        val errorText = TextView(this).apply {
+            text = "ERRORE:\n\n${e.javaClass.name}\n\n${e.message}\n\n${e.stackTraceToString()}"
+            textSize = 14f
+            setPadding(30, 30, 30, 30)
+        }
+
+        setContentView(
+            ScrollView(this).apply {
+                addView(errorText)
+            }
+        )
     }
+}
 
     private fun buildUi() {
         val root = LinearLayout(this).apply {
