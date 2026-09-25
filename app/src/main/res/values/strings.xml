@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Note Widget</string>
+    <string name="add_note">Aggiungi nota</string>
+    <string name="save">Salva</string>
+    <string name="delete">Elimina</string>
+    <string name="settings">Impostazioni</string>
+</resources>
