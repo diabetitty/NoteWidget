@@ -41,11 +41,7 @@ class NoteWidgetService : RemoteViewsService() {
             v.setTextColor(R.id.note_date, color)
             v.setTextColor(R.id.note_text, color)
             v.setInt(R.id.note_item, "setBackgroundColor", bg)
-            v.setTypeface(R.id.note_text, "sans-serif", Typeface.NORMAL)
-            when (font) {
-                1 -> v.setTypeface(R.id.note_text, "serif", Typeface.NORMAL)
-                2 -> v.setTypeface(R.id.note_text, "monospace", Typeface.NORMAL)
-            }
+            val fillIn = Intent().apply { putExtra("noteId", n.id) }
 
             val fillIn = Intent().apply { putExtra("noteId", n.id) }
             v.setOnClickFillInIntent(R.id.note_item, fillIn)
