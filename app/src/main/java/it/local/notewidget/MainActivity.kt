@@ -80,9 +80,8 @@ class MainActivity : Activity() {
     }
 
     private fun updateDateText() {
-        dateButton.text = "Data: " + DateUtils.format(date.toString(), SettingsRepository.dateFormat)
-    }
-
+    dateButton.text = "Data: " + date.toString()
+}
     private fun chooseDate() {
         DatePickerDialog(this, { _, y, m, d ->
             date = LocalDate.of(y, m + 1, d)
